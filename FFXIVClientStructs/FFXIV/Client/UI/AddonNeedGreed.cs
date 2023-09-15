@@ -19,7 +19,9 @@ public unsafe struct LootItemInfo {
     [FieldOffset(0x00)] public byte* ItemName; // Pointer to a SeString
     [FieldOffset(0x08)] public uint ItemId;
     [FieldOffset(0x0C)] public uint IconId;
+    // 0x02 -> normal
     // [FieldOffset(0x10)] public uint RollState; // Indicates something about the roll state for this item
     [FieldOffset(0x18)] public uint Roll; // uint.MaxValue when item is 'Passed'
+    [FieldOffset(0x1C)] public uint SecondsLeft;
     [FieldOffset(0x24)] public uint ItemCount;
 }

@@ -11,4 +11,5 @@ namespace FFXIVClientStructs.FFXIV.Client.System.Resource.Handle;
 public unsafe struct TextureResourceHandle {
     [FieldOffset(0x0)] public ResourceHandle ResourceHandle;
     [FieldOffset(0x118)] public Texture* Texture;
+    [FieldOffset(0x120)] public Texture* Texture_2;
 }

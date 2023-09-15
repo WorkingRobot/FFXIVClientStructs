@@ -9,6 +9,7 @@ public partial struct AgentLoot {
 
     [FieldOffset(0x2C)] public byte HoveredSlotIndex;
     [FieldOffset(0x30)] public uint HoveredItemId;
+    [FieldOffset(0x3A)] public uint HoveredItemCondition;
     [FieldOffset(0x74)] public int SelectedSlotIndex;
     [FieldOffset(0x7C)] public int NumItems;
 }

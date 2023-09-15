@@ -39,6 +39,13 @@ public enum NodeFlags : ushort {
     UnkFlag2 = 0x8000
 }
 
+[Flags]
+public enum DrawFlags : uint {
+    IsDirty = 0x01,
+    HasDirtyChildren = 0x02,
+    // ClipCount is bits 10-17, idk its a mess
+}
+
 // Component::GUI::AtkResNode
 //   Component::GUI::AtkEventTarget
 
@@ -66,7 +73,7 @@ public unsafe partial struct AtkResNode : ICreatable {
     [FieldOffset(0x4C)] public float ScaleX;
     [FieldOffset(0x50)] public float ScaleY;
     [FieldOffset(0x54)] public float Rotation; // radians (file is degrees)
-    [FieldOffset(0x58), Obsolete] public fixed float UnkMatrix[3 * 2];
+    [FieldOffset(0x58), Obsolete("Use Transform and ScreenX/Y", false)] public fixed float UnkMatrix[3 * 2];
     [FieldOffset(0x58)] public Matrix2x2 Transform;
     [FieldOffset(0x68)] public float ScreenX;
     [FieldOffset(0x6C)] public float ScreenY;
@@ -92,8 +99,8 @@ public unsafe partial struct AtkResNode : ICreatable {
     [FieldOffset(0x8F)] public byte UnkByte_1;
     [FieldOffset(0x90)] public ushort Width;
     [FieldOffset(0x92)] public ushort Height;
-    [FieldOffset(0x94)] public float OriginX;
 
+    [FieldOffset(0x94)] public float OriginX;
     [FieldOffset(0x98)] public float OriginY;
 
     // asm accesses these fields together so this is one 32bit field with priority+flags
@@ -101,8 +108,8 @@ public unsafe partial struct AtkResNode : ICreatable {
     [Obsolete("Use NodeFlags", false)]
     [FieldOffset(0x9E)] public short Flags;
     [FieldOffset(0x9E)] public NodeFlags NodeFlags;
-    [FieldOffset(0xA0)] public uint Flags_2; // bit 1 = has changes, ClipCount is bits 10-17, idk its a mess
-    [FieldOffset(0xA0)] public uint DrawFlags;
+    [FieldOffset(0xA0)] public uint Flags_2;
+    [FieldOffset(0xA0)] public DrawFlags DrawFlags;
 
     public bool IsVisible => NodeFlags.HasFlag(NodeFlags.Visible);
 
