@@ -106,6 +106,7 @@ public unsafe partial struct DrawObjectData {
     public const int Size = 0x70;
 
     [FieldOffset(0x00)] public WeaponModelId ModelId;
+    [FieldOffset(0x08)] public Weapon* Model;
     [FieldOffset(0x10)] public void** VTable;
     [FieldOffset(0x18)] public DrawObject* DrawObject;
     [FieldOffset(0x60)] public byte State;
