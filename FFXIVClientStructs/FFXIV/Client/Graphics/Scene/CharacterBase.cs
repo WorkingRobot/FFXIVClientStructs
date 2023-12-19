@@ -4,6 +4,7 @@ using FFXIVClientStructs.FFXIV.Client.Graphics.Kernel;
 using FFXIVClientStructs.FFXIV.Client.Graphics.Physics;
 using FFXIVClientStructs.FFXIV.Client.Graphics.Render;
 using FFXIVClientStructs.FFXIV.Client.System.Resource.Handle;
+using FFXIVClientStructs.FFXIV.Client.System.Resource.Handle;
 using FFXIVClientStructs.FFXIV.Common.Math;
 
 namespace FFXIVClientStructs.FFXIV.Client.Graphics.Scene;
@@ -84,6 +85,10 @@ public unsafe partial struct CharacterBase {
     [FieldOffset(0x2F0)] public void* EID; // Client::System::Resource::Handle::ElementIdResourceHandle - EID file for base skeleton
 
     [FieldOffset(0x2F8)] public void** IMCArray; // array of Client::System::Resource::Handle::ImageChangeDataResourceHandle ptrs size = SlotCount - IMC file for model in slot
+
+    [FieldOffset(0x300)] public StdVector<nint> UnkVector;
+
+    [FieldOffset(0x318)] public StdVector<Pointer<ResourceHandle>> ResourceHandles;
 
     [FieldOffset(0x8E8)] public byte AnimationVariant; // the "a%04d" part in "%s/animation/a%04d/%s/%s.pap"
 
